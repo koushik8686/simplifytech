@@ -8,4 +8,7 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: ['./src/setupTests.js'],
   },
+  optimizeDeps: {
+    include: ['react', 'react-dom'], // Explicitly include react and react-dom
+  },
 });
