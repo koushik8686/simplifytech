@@ -1,10 +1,12 @@
   import React from 'react';
+  import { useMediaQuery } from '@mui/material';
   import { AppBar, Toolbar, Typography, Button, IconButton, Box, Container ,Card , CardContent } from '@mui/material';
   import SearchIcon from '@mui/icons-material/Search';
-  import NotificationsIcon from '@mui/icons-material/Notifications';
-  import AccountCircle from '@mui/icons-material/AccountCircle';
-
+ 
   const GetStarted = () => {
+    const isSmallScreen = useMediaQuery('(max-width:600px)');
+    const isMediumScreen = useMediaQuery('(max-width:900px)');
+  
     const steps = [
       {
         title: 'Tell us about your event',
@@ -20,39 +22,46 @@
       },
     ]
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', height: '100vh',maxWidth:'100vw' }}>
         {/* Navbar */}
-        <AppBar position='sticky' color="default" sx={{ height:"10%", backgroundColor: '#000000' }}>
-          <Container maxWidth="100%">
-            <Toolbar sx={{ justifyContent: 'space-between' }}>
-              <Typography variant="h6" color="inherit" component="div" sx={{ margin:0, fontWeight: 'bold', color: '#93e849' }}>
-                SPOTO
-              </Typography>
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                {/* Nav Links */}
-                <Button sx={{ color: '#EEEEEE', marginRight: 2 }}>Events</Button>
-                <Button sx={{ color: '#EEEEEE', marginRight: 2 }}>POS</Button>
-                <Button sx={{ color: '#EEEEEE', marginRight: 2 }}>Insights</Button>
-                <Button sx={{ color: '#EEEEEE', marginRight: 2 }}>Manage Team</Button>
-              </Box>
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <Button variant="contained" sx={{ backgroundColor: '#9e69f6', marginRight: 2 }}>
-                  Create Event
-                </Button>
-                {/* Icons */}
-                <IconButton sx={{ color: '#EEEEEE' }}>
-                  <SearchIcon />
-                </IconButton>
-                <IconButton sx={{ color: '#EEEEEE' }}>
-                  <NotificationsIcon />
-                </IconButton>
-                <IconButton sx={{ color: '#EEEEEE' }}>
-                  <AccountCircle />
-                </IconButton>
-              </Box>
-            </Toolbar>
-          </Container>
-        </AppBar>
+        <AppBar position='sticky' color="default" sx={{ height: "10%",width:"100%", backgroundColor: '#000000' }}>
+      <Container maxWidth="100%">
+        <Toolbar sx={{ justifyContent: 'space-between' }}>
+          <Typography 
+            variant={isSmallScreen ? "h5" : "h6"} // Adjust font size based on screen size
+            color="inherit" 
+            component="div" 
+            sx={{ margin: 0, fontWeight: 'bold', color: '#93e849' }}
+          >
+            SPOTO
+          </Typography>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            {/* Nav Links */}
+            {["Events", "POS", "Insights", "Manage Team"].map((text) => (
+              <Button 
+                key={text} 
+                sx={{  color: '#EEEEEE', marginRight: 2, fontSize: isSmallScreen ? '0.875rem' : '1rem' , textTransform:"none"  }} 
+                >
+                {text}
+              </Button>
+            ))}
+          </Box>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <Button 
+              variant="contained" 
+              sx={{ backgroundColor: '#9e69f6', marginRight: 2, fontSize: isSmallScreen ? '0.575rem' : '1rem',  textTransform:"none" }} 
+            >
+              Create Event
+            </Button>
+            {/* Icons */}
+            <IconButton sx={{ color: '#EEEEEE', fontSize: isSmallScreen ? '1.5rem' : '2rem' }}>
+              <SearchIcon />
+            </IconButton>
+         
+          </Box>
+        </Toolbar>
+      </Container>
+    </AppBar>
 
         {/* Main Content */}
         <Box
@@ -69,7 +78,7 @@
             marginTop:'3%',
           }}>
           <Typography variant="h6" sx={{color:"white"}} component="div">
-            Its Easy To get started on spoto
+            It's easy to get started on Spoto
           </Typography>
           <Box sx={{ mt: 2, maxWidth:"60%" }}>
             {steps.map((step, index) => (
