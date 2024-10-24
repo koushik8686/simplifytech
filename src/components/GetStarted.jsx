@@ -4,7 +4,8 @@
   import SearchIcon from '@mui/icons-material/Search';
   import logo from './logo.jpg'
   import MenuIcon from '@mui/icons-material/Menu';
-
+  import NotificationsIcon from '@mui/icons-material/NotificationsNoneOutlined';  
+  import AccountCircleIcon from '@mui/icons-material/AccountCircle';
   const GetStarted = () => {
     const [anchorEl, setAnchorEl] = useState(null);
     const isSmallScreen = useMediaQuery('(max-width:600px)');
@@ -39,12 +40,12 @@
       <div style={{ display: 'flex', flexDirection: 'column', height: '100vh',maxWidth:'100vw' }}>
         {/* Navbar */}
         <AppBar position="sticky" sx={{ height: "10%", width: "100%", backgroundColor: '#000000' }}>
-      <Container maxWidth="lg">
-        <Toolbar sx={{ justifyContent: 'space-between', padding: '0 8px' }}>
+      <Container maxWidth="100%">
+        <Toolbar sx={{ justifyContent: 'space-between' }}>
           <img 
             src={logo}
-            alt="Logo" 
-            style={{ height: '40px', width: 'auto' }}
+            alt="Spoto Logo" 
+            style={{ height: '50px', width: 'auto' }}
           />
           
           {isMobile ? (
@@ -112,6 +113,26 @@
             >
               <SearchIcon />
             </IconButton>
+            <IconButton 
+              sx={{ 
+                color: '#EEEEEE', 
+                fontSize: { xs: '1.25rem', sm: '1.5rem', md: '2rem' },
+                ml: 1
+              }}
+              aria-label="notifications"
+            >
+              <NotificationsIcon />
+            </IconButton>
+            <IconButton 
+              sx={{ 
+                color: '#EEEEEE', 
+                fontSize: { xs: '1.25rem', sm: '1.5rem', md: '2rem' },
+                ml: 1
+              }}
+              aria-label="user account"
+            >
+              <AccountCircleIcon />
+            </IconButton>
             {isMobile && (
               <IconButton
                 size="large"
@@ -127,10 +148,7 @@
           </Box>
         </Toolbar>
       </Container>
-     </AppBar>
-
-
-        {/* Main Content */}
+    </AppBar>        {/* Main Content */}
         <Box
       sx={{
         minHeight: '90vh',
